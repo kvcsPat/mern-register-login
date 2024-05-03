@@ -20,7 +20,7 @@
 
   border-radius: 5px;
 
-  color: var(--primary-color);
+  color: var(--bg-color);
   background-color: var(--success-color);
 }
 
