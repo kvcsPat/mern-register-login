@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext } from "react";
 import AuthContext from "../contexts/createAuthContext";
 import avatar from "../assets/user.svg";

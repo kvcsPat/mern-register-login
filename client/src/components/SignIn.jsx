@@ -1,12 +1,34 @@
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import useToggle from "../hooks/useToggle";
+import useLogin from "../hooks/useLogin";
+import ErrorMsg from "./ErrorMsg";
 import "../styles/Form.css";
 
 export default function SignIn() {
   const [showPassword, toggleShowPassword] = useToggle(false);
+  const { loading, error, setError, loginUser } = useLogin();
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+
+    const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g;
+
+    let email = emailRef.current.value;
+    let password = passwordRef.current.value;
+
+    if (email && email.length && email.match(isValidEmail)) {
+      let user = {
+        email: email,
+        password: password,
+      };
+      await loginUser(user);
+    } else {
+      setError("Invalid email address!");
+    }
   };
 
   return (
@@ -18,7 +40,8 @@ export default function SignIn() {
         <div className="input-container">
           <span className="material-icons-round icon-left">mail_outline</span>
           <input
-            type="email"
+            ref={emailRef}
+            type="text"
             name="email"
             className="input"
             placeholder="Email"
@@ -30,6 +53,7 @@ export default function SignIn() {
         <div className="input-container">
           <span className="material-icons-round icon-left">lock_open</span>
           <input
+            ref={passwordRef}
             type={showPassword ? "text" : "password"}
             name="password"
             className="input"
@@ -45,8 +69,10 @@ export default function SignIn() {
           </span>
         </div>
 
+        <ErrorMsg error={error} setError={setError} />
+
         <button type="submit" className="general-btn">
-          Sign in
+          {loading ? "Signing in" : "Sign in"}
         </button>
 
         <div className="navigate">

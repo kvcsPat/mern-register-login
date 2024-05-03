@@ -2,8 +2,8 @@ import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import useToggle from "../hooks/useToggle";
 import useSignup from "../hooks/useSignup";
-import "../styles/Form.css";
 import ErrorMsg from "./ErrorMsg";
+import "../styles/Form.css";
 
 export default function SignUp() {
   const [showPassword, toggleShowPassword] = useToggle(false);
