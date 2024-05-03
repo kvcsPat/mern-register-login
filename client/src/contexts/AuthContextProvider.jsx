@@ -4,6 +4,7 @@ import AuthContext from "./createAuthContext";
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [authMsg, setAuthMsg] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const storedData = JSON.parse(localStorage.getItem("user_data"));
 
@@ -36,7 +37,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated, login, logout, userData }}
+      value={{
+        token,
+        isAuthenticated,
+        login,
+        logout,
+        userData,
+        authMsg,
+        setAuthMsg,
+      }}
     >
       {children}
     </AuthContext.Provider>

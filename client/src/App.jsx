@@ -1,14 +1,13 @@
-import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Register from "./components/SignUp";
 import Login from "./components/SignIn";
-import AuthContext from "./contexts/createAuthContext";
+import { useAuth } from "./contexts/useAuthContext";
 import "./styles/reset.css";
 import "./styles/global.css";
 
 function App() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   return (
     <main>

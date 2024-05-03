@@ -15,20 +15,15 @@ export default function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
-    const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g;
-
     let email = emailRef.current.value;
     let password = passwordRef.current.value;
 
-    if (email && email.length && email.match(isValidEmail)) {
-      let user = {
-        email: email,
-        password: password,
-      };
-      await loginUser(user);
-    } else {
-      setError("Invalid email address!");
-    }
+    let user = {
+      email: email,
+      password: password,
+    };
+
+    await loginUser(user);
   };
 
   return (

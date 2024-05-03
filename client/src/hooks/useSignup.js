@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
-import AuthContext from "../contexts/createAuthContext";
+import { useState } from "react";
+import { useAuth } from "../contexts/useAuthContext";
 
 const useSignup = () => {
-  const { login } = useContext(AuthContext);
+  const { login, setAuthMsg } = useAuth();
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -26,6 +26,7 @@ const useSignup = () => {
       const data = await res.json();
 
       if (res.status === 201) {
+        setAuthMsg(data.message);
         login(data.token, data.user);
       } else if (res.status === 400) {
         setError(data.message);
