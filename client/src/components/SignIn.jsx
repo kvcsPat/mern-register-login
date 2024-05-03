@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import useToggle from "../hooks/useToggle";
+import "../styles/Form.css";
 
 export default function SignIn() {
   const [showPassword, toggleShowPassword] = useToggle(false);
@@ -10,7 +11,7 @@ export default function SignIn() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSignIn} className="form signup">
+      <form onSubmit={handleSignIn} className="form">
         <h1 className="title">Sign in</h1>
         <h2 className="sub">Welcome back!</h2>
 
@@ -44,7 +45,7 @@ export default function SignIn() {
           </span>
         </div>
 
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="general-btn">
           Sign in
         </button>
 

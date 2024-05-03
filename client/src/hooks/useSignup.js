@@ -26,7 +26,6 @@ const useSignup = () => {
       const data = await res.json();
 
       if (res.status === 201) {
-        alert(data.message);
         login(data.token, data.user);
       } else if (res.status === 400) {
         setError(data.message);

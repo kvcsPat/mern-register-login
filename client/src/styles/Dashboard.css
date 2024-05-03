@@ -1,0 +1,46 @@
+/* ----- User panel ----- */
+.user-panel {
+  padding: 2rem;
+
+  border-radius: 5px;
+}
+
+/* ----- User avatar ----- */
+.avatar {
+  width: 70%;
+}
+
+/* ----- User data container ----- */
+.user-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+/* ----- User data label ----- */
+.user-label {
+  font-size: 1rem;
+  font-weight: 400;
+
+  color: var(--secondary-color);
+}
+
+/* ----- Username ----- */
+.user-name {
+  font-size: 2rem;
+  font-weight: 500;
+
+  color: var(--primary-color);
+}
+
+/* ----- Email and role ----- */
+.user-email,
+.user-role {
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  color: var(--primary-color);
+}

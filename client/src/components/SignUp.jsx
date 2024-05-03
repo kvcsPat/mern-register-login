@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import useToggle from "../hooks/useToggle";
 import useSignup from "../hooks/useSignup";
+import "../styles/Form.css";
+import ErrorMsg from "./ErrorMsg";
 
 export default function SignUp() {
   const [showPassword, toggleShowPassword] = useToggle(false);
@@ -38,7 +40,7 @@ export default function SignUp() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSignUp} className="form signup">
+      <form onSubmit={handleSignUp} className="form">
         <h1 className="title">Sign up</h1>
         <h2 className="sub">Create an account.</h2>
 
@@ -105,22 +107,9 @@ export default function SignUp() {
           </span>
         </div>
 
-        {error ? (
-          <div className="error-container">
-            <span className="material-icons-round icon-left">
-              error_outline
-            </span>
-            <p className="error-msg">{error}</p>
-            <span
-              className="material-icons-round icon-right"
-              onClick={() => setError(null)}
-            >
-              close
-            </span>
-          </div>
-        ) : null}
+        <ErrorMsg error={error} setError={setError} />
 
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="general-btn">
           {loading ? "Signing up" : "Sign up"}
         </button>
 

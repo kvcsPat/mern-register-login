@@ -4,8 +4,8 @@ import Dashboard from "./components/Dashboard";
 import Register from "./components/SignUp";
 import Login from "./components/SignIn";
 import AuthContext from "./contexts/createAuthContext";
-import "./global_styles/reset.css";
-import "./global_styles/global.css";
+import "./styles/reset.css";
+import "./styles/global.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
