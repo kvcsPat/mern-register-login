@@ -47,7 +47,7 @@ main {
   padding: 0 2rem;
 
   width: 100%;
-  height: 37rem;
+  height: 40rem;
 }
 
 .title {
@@ -161,12 +161,11 @@ main {
     color: var(--hover-color);
   }
 }
-
-.material-icons-round,
-.material-icons-outlined {
+.input-container .material-icons-round,
+.input-container .material-icons-outlined {
   position: absolute;
 
-  top: 30px;
+  top: 28px;
   transform: translate(-50%, -50%);
 
   font-size: 20px;
@@ -175,7 +174,7 @@ main {
   color: var(--secondary-color);
 }
 
-.icon-left {
+.input-container .icon-left {
   left: 20px;
 }
 
@@ -183,4 +182,40 @@ main {
   cursor: pointer;
 
   right: 5px;
+}
+
+.error-container {
+  position: relative;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: 3.5rem;
+
+  padding-left: 4rem;
+
+  border-radius: 5px;
+
+  color: var(--bg-color);
+  background-color: rgb(231, 87, 87);
+}
+
+.error-msg {
+  font-weight: 500;
+}
+
+.error-container .material-icons-round {
+  position: absolute;
+
+  top: 28px;
+  transform: translate(-50%, -50%);
+
+  font-size: 20px;
+}
+
+.error-container .icon-left {
+  left: 2rem;
+  font-size: 2rem;
 }

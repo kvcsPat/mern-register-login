@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import useToggle from "../hooks/useToggle";
+import useSignup from "../hooks/useSignup";
 
 export default function SignUp() {
   const [showPassword, toggleShowPassword] = useToggle(false);
+  const { loading, error, setError, registerUser } = useSignup();
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -12,10 +14,26 @@ export default function SignUp() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log(nameRef.current.value);
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
-    console.log(rePasswordRef.current.value);
+
+    const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g;
+
+    let name = nameRef.current.value;
+    let email = emailRef.current.value;
+    let password = passwordRef.current.value;
+    let rePassword = rePasswordRef.current.value;
+
+    if (email && email.length && email.match(isValidEmail)) {
+      let newUser = {
+        name: name,
+        email: email,
+        password: password,
+        passwordConfirm: rePassword,
+      };
+
+      registerUser(newUser);
+    } else {
+      setError("Invalid email address!");
+    }
   };
 
   return (
@@ -29,8 +47,10 @@ export default function SignUp() {
           <input
             ref={nameRef}
             type="text"
+            name="name"
             className="input"
             placeholder="Username"
+            autoComplete="off"
             required
           />
         </div>
@@ -39,9 +59,11 @@ export default function SignUp() {
           <span className="material-icons-round icon-left">mail_outline</span>
           <input
             ref={emailRef}
-            type="email"
+            type="text"
+            name="email"
             className="input"
             placeholder="Email"
+            autoComplete="off"
             required
           />
         </div>
@@ -51,8 +73,10 @@ export default function SignUp() {
           <input
             ref={passwordRef}
             type={showPassword ? "text" : "password"}
+            name="password"
             className="input"
             placeholder="Password"
+            autoComplete="off"
             required
           />
           <span
@@ -68,6 +92,7 @@ export default function SignUp() {
           <input
             ref={rePasswordRef}
             type={showPassword ? "text" : "password"}
+            name="password-confirm"
             className="input"
             placeholder="Re-type password"
             required
@@ -80,8 +105,23 @@ export default function SignUp() {
           </span>
         </div>
 
+        {error ? (
+          <div className="error-container">
+            <span className="material-icons-round icon-left">
+              error_outline
+            </span>
+            <p className="error-msg">{error}</p>
+            <span
+              className="material-icons-round icon-right"
+              onClick={() => setError(null)}
+            >
+              close
+            </span>
+          </div>
+        ) : null}
+
         <button type="submit" className="submit-btn">
-          Sign up
+          {loading ? "Signing up" : "Sign up"}
         </button>
 
         <div className="navigate">

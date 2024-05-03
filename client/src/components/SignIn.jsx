@@ -16,15 +16,25 @@ export default function SignIn() {
 
         <div className="input-container">
           <span className="material-icons-round icon-left">mail_outline</span>
-          <input type="email" className="input" placeholder="Email" />
+          <input
+            type="email"
+            name="email"
+            className="input"
+            placeholder="Email"
+            autoComplete="off"
+            required
+          />
         </div>
 
         <div className="input-container">
           <span className="material-icons-round icon-left">lock_open</span>
           <input
             type={showPassword ? "text" : "password"}
+            name="password"
             className="input"
             placeholder="Password"
+            autoComplete="off"
+            required
           />
           <span
             className="material-icons-outlined icon-right"
