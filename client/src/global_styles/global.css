@@ -1,0 +1,186 @@
+:root {
+  --bg-color: #ffffff;
+  --primary-color: #1a1a1a;
+  --secondary-color: #818181;
+  --hover-color: #58a9ff;
+  --box-shadow: 0px 0px 10px rgb(0 0 0/15%);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  margin: auto 0;
+
+  background-color: var(--bg-color);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 25rem;
+  width: 100%;
+  min-width: 305px;
+
+  min-height: fit-content;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  gap: 1.5rem;
+
+  padding: 0 2rem;
+
+  width: 100%;
+  height: 37rem;
+}
+
+.title {
+  align-self: flex-start;
+
+  font-size: 3rem;
+  font-weight: 500;
+
+  color: var(--primary-color);
+}
+
+.sub {
+  align-self: flex-start;
+
+  font-size: 1rem;
+  font-weight: 400;
+
+  color: var(--secondary-color);
+}
+
+.input-container {
+  position: relative;
+
+  width: 100%;
+  height: 3.5rem;
+
+  border-radius: 5px;
+
+  box-shadow: var(--box-shadow);
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 2.5rem;
+
+  font-size: 1rem;
+  font-weight: 400;
+
+  border: solid 3px transparent;
+
+  color: var(--primary-color);
+
+  &::placeholder {
+    font-size: 1rem;
+    font-weight: 400;
+
+    opacity: 0.7;
+    color: var(--secondary-color);
+  }
+
+  &:focus {
+    border-radius: 5px;
+
+    border: solid 2px var(--hover-color);
+  }
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 3.5rem;
+
+  font-size: 1rem;
+  font-weight: 400;
+
+  border-radius: 5px;
+
+  color: var(--bg-color);
+  background-color: var(--primary-color);
+
+  transition: all 300ms;
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}
+
+.navigate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+.navigate-text {
+  font-size: 1rem;
+  font-weight: 400;
+
+  color: var(--secondary-color);
+}
+
+.navigate-btn {
+  font-size: 1rem;
+  font-weight: 700;
+
+  color: var(--primary-color);
+
+  transition: all 300ms;
+
+  &:hover {
+    color: var(--hover-color);
+  }
+}
+
+.material-icons-round,
+.material-icons-outlined {
+  position: absolute;
+
+  top: 30px;
+  transform: translate(-50%, -50%);
+
+  font-size: 20px;
+
+  opacity: 0.7;
+  color: var(--secondary-color);
+}
+
+.icon-left {
+  left: 20px;
+}
+
+.icon-right {
+  cursor: pointer;
+
+  right: 5px;
+}
