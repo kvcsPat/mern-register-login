@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
       setUserData(user);
       setIsAuthenticated(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const login = (newToken, newData) => {

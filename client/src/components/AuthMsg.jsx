@@ -9,11 +9,12 @@ export default function AuthMsg() {
     if (authMsg) {
       const timer = setTimeout(() => {
         setAuthMsg(null);
-      }, 1500);
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
     return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
