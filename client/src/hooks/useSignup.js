@@ -7,6 +7,15 @@ const useSignup = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
+  const url =
+    import.meta.env.VITE_ENV === "production"
+      ? `${import.meta.env.VITE_PROD_BASE_URL}${
+          import.meta.env.VITE_SIGNUP_ROUTE
+        }`
+      : `${import.meta.env.VITE_DEV_BASE_URL}${
+          import.meta.env.VITE_SIGNUP_ROUTE
+        }`;
+
   const registerUser = async (values) => {
     if (values.password !== values.passwordConfirm) {
       return setError("Passwords do not match!");
@@ -15,7 +24,7 @@ const useSignup = () => {
     try {
       setError(null);
       setLoading(true);
-      const res = await fetch("http://localhost:4000/api/auth/signup", {
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -7,11 +7,20 @@ const useLogin = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
+  const url =
+    import.meta.env.VITE_ENV === "production"
+      ? `${import.meta.env.VITE_PROD_BASE_URL}${
+          import.meta.env.VITE_LOGIN_ROUTE
+        }`
+      : `${import.meta.env.VITE_DEV_BASE_URL}${
+          import.meta.env.VITE_LOGIN_ROUTE
+        }`;
+
   const loginUser = async (values) => {
     try {
       setError(null);
       setLoading(true);
-      const res = await fetch("http://localhost:4000/api/auth/login", {
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

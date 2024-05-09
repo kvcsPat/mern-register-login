@@ -7,8 +7,29 @@ const app = express();
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/usersdb";
 
+const prodOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2];
+
+const devOrigin = ["http://localhost:5173"];
+
+const allowedOrigins =
+  process.env.NODE_ENV === "production" ? prodOrigins : devOrigin;
+
 // MIDDLEWARES
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin)) {
+        console.log(origin, allowedOrigins);
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["POST"],
+  })
+);
+
 app.use(express.json());
 
 // ROUTE
