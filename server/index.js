@@ -7,7 +7,7 @@ const app = express();
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/usersdb";
 
-const prodOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2];
+const prodOrigins = [process.env.ORIGIN];
 
 const devOrigin = ["http://localhost:5173"];
 
