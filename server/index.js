@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRoute");
 const app = express();
 
@@ -18,19 +19,27 @@ const allowedOrigins =
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin)) {
+      if (!origin || allowedOrigins.includes(origin)) {
         console.log(origin, allowedOrigins);
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
+    optionsSuccessStatus: 200,
     credentials: true,
     methods: ["POST"],
   })
 );
 
 app.use(express.json());
+
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(cookieParser());
 
 // ROUTE
 app.use("/api/auth", authRouter);
